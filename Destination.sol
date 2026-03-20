@@ -32,7 +32,7 @@ contract Destination is AccessControl {
 	function unwrap(address _wrapped_token, address _recipient, uint256 _amount ) public {
 		address underlying = wrapped_tokens[_wrapped_token];
 		require(underlying != address(0), "wrapped token error");
-		BridgeToken(_wrapped_token).burn(msg.sender, _amount);
+		new BridgeToken(_wrapped_token).burn(msg.sender, _amount);
 		//emit Unwrap(underlying, _wrapped_token, msg.sender, _recipient, _amount);
 	}
 

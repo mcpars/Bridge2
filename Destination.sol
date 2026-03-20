@@ -43,6 +43,7 @@ contract Destination is AccessControl {
 
 		BridgeToken wrapped = new BridgeToken(_underlying_token, name, symbol, msg.sender);
 		address wrappedAddress = address(wrapped);
+		require(wrapped_tokens[_underlying_token] == address(0), "already exists");
 
 		wrapped_tokens[_underlying_token] = wrappedAddress;		
 		underlying_tokens[wrappedAddress] = _underlying_token;

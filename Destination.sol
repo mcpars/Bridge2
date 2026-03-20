@@ -29,7 +29,9 @@ contract Destination is AccessControl {
 	}
 
 	function unwrap(address _wrapped_token, address _recipient, uint256 _amount ) public {
-		//YOUR CODE HERE
+		address underlying = wrapped_tokens[_wrapped_token];
+		BridgeToken(_wrapped_token).burn(msg.sender, _amount);
+		emit Unwrap(underlying,_wrapped_token, msg.sender,_recipient, _amount);
 	}
 
 	function createToken(address _underlying_token, string memory name, string memory symbol ) public onlyRole(CREATOR_ROLE) returns(address) {

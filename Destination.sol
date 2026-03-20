@@ -40,6 +40,7 @@ contract Destination is AccessControl {
 		BridgeToken wrapped = new BridgeToken(_underlying_token, name, symbol, address(this));
 		address wrappedAddress = address(wrapped);
 
+		
 		underlying_tokens[_underlying_token] = wrappedAddress;
 		wrapped_tokens[wrappedAddress] = _underlying_token;
 		tokens.push(wrappedAddress);

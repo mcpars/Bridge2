@@ -23,7 +23,9 @@ contract Destination is AccessControl {
     }
 
 	function wrap(address _underlying_token, address _recipient, uint256 _amount ) public onlyRole(WARDEN_ROLE) {
-		//YOUR CODE HERE
+		address wrapped = underlying_tokens[_underlying_token];
+		require(wrapped).mint(_recipient, _amount);
+		emit Wrap(_underlying_token, wrapped, _recipient, _amount);
 	}
 
 	function unwrap(address _wrapped_token, address _recipient, uint256 _amount ) public {

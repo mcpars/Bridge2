@@ -39,7 +39,9 @@ contract Destination is AccessControl {
 	}
 
 	function createToken(address _underlying_token, string memory name, string memory symbol ) public onlyRole(CREATOR_ROLE) returns(address) {
-		BridgeToken wrapped = new BridgeToken(_underlying_token, name, symbol);
+		
+
+		BridgeToken wrapped = new BridgeToken(_underlying_token, name, symbol, msg.sender);
 		address wrappedAddress = address(wrapped);
 
 		wrapped_tokens[_underlying_token] = wrappedAddress;		

@@ -34,7 +34,7 @@ contract Destination is AccessControl {
 		address underlying = underlying_tokens[_wrapped_token];
 		require(underlying != address(0), "wrapped token error");
 
-		BridgeToken(_wrapped_token).burn(msg.sender, _amount);
+		BridgeToken(_wrapped_token).burnFrom(msg.sender, _amount);
 		emit Unwrap(underlying, _wrapped_token, msg.sender, _recipient, _amount);
 		
 	}
